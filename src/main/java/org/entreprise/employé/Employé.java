@@ -1,6 +1,7 @@
-package org.entreprise;
+package org.entreprise.employé;
 
 import lombok.*;
+import org.entreprise.Salaire;
 import org.entreprise.catégories.Catégorie;
 
 import java.time.LocalDate;
@@ -16,6 +17,5 @@ public class Employé {
     private LocalDate dateDeNaissance;
     private LocalDate dateDEmbauche;
     private LocalDate dateDeFinDeContrat;
-    private Salaire salaire;
     private Catégorie catégorie;
 }
