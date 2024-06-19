@@ -3,6 +3,7 @@ package org.entreprise.calendar;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -24,11 +25,12 @@ public class MonthCalendar {
 
     public List<LocalDate> getListOfWorkingDays(){
         List workingDays = new ArrayList<>();
-        if(juneCalendar.MONTH == JUNE) {
+        if(this.juneCalendar.MONTH == JUNE) {
             while (juneCalendar.DAY_OF_WEEK != SUNDAY) {
                 workingDays.add(Calendar.DATE);
             }
         }
         return workingDays;
     }
+
 }

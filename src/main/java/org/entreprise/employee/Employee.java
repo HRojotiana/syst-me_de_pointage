@@ -4,6 +4,8 @@ import lombok.*;
 import org.entreprise.categories.Categorie;
 
 import java.time.LocalDate;
+import java.util.List;
+
 @AllArgsConstructor
 @Getter
 @Setter

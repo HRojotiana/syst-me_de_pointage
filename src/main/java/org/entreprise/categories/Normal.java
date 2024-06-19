@@ -5,6 +5,12 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.entreprise.Salary;
+import org.entreprise.calendar.MonthCalendar;
+
+import java.time.LocalDate;
+import java.util.Calendar;
+import java.util.List;
+
 @Getter
 @Setter
 @ToString
