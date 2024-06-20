@@ -9,7 +9,7 @@ import org.entreprise.Salary;
 @Setter
 @ToString
 @EqualsAndHashCode
-public final class Driver extends Categorie {
+public final class Driver extends Category {
     public Driver(String name, int numberOfNormalWorkHours, Salary normalSalary, double compensation) {
         super(name, numberOfNormalWorkHours, normalSalary, compensation);
     }

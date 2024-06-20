@@ -1,10 +1,9 @@
 package org.entreprise.employee;
 
 import lombok.*;
-import org.entreprise.categories.Categorie;
+import org.entreprise.categories.Category;
 
 import java.time.LocalDate;
-import java.util.List;
 
 @AllArgsConstructor
 @Getter
@@ -18,5 +17,5 @@ public class Employee {
     private LocalDate dateDeNaissance;
     private LocalDate hiringDate;
     private LocalDate contractEndDate;
-    private Categorie categorie;
+    private Category category;
 }

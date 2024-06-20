@@ -9,7 +9,7 @@ import org.entreprise.Salary;
 @Setter
 @EqualsAndHashCode
 @ToString
-public final class Guardian extends Categorie {
+public final class Guardian extends Category {
     public Guardian(String name, int numberOfNormalWorkHours, Salary normalSalary, double compensation) {
         super(name, numberOfNormalWorkHours, normalSalary, compensation);
     }

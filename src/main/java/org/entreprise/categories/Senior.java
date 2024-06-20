@@ -9,7 +9,7 @@ import org.entreprise.Salary;
 @Setter
 @ToString
 @EqualsAndHashCode
-public final class Senior extends Categorie {
+public final class Senior extends Category {
     public Senior(String name, int numberOfNormalWorkHours, Salary normalSalary, double compensation) {
         super(name, numberOfNormalWorkHours, normalSalary, compensation);
     }

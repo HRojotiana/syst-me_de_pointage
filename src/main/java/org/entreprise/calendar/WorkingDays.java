@@ -1,14 +1,22 @@
 package org.entreprise.calendar;
 
-import org.entreprise.categories.Categorie;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+import org.entreprise.categories.Category;
 
-import java.time.LocalDate;
 import java.util.Calendar;
-import java.util.List;
-
+@Getter
+@Setter
+@ToString
+@EqualsAndHashCode
 public class WorkingDays extends MonthCalendar{
+    private Category category;
     public WorkingDays(Calendar juneCalendar) {
         super(juneCalendar);
     }
+
+
 
 }
