@@ -2,29 +2,33 @@ package org.entreprise.categories;
 
 import lombok.*;
 import org.entreprise.Salary;
-import org.entreprise.calendar.MonthCalendar;
 
-import java.time.LocalDate;
-import java.util.Calendar;
-import java.util.List;
-
-import static java.util.Calendar.SATURDAY;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @AllArgsConstructor
 @Getter
 @Setter
 @ToString
 @EqualsAndHashCode
-public sealed class Category permits Senior, Normal, Guardian, Driver {
+public sealed abstract class Category permits Senior, Normal, Guardian, Driver {
     private final String name;
     private final int numberOfNormalWorkHours;
     private Salary normalSalary;
     private double compensation;
 
-    public List<LocalDate> getWorkingDays(Calendar calendar, MonthCalendar normalCalendar) {
-        if(calendar.DAY_OF_WEEK != SATURDAY){
-            return normalCalendar.getListOfWorkingDays();
-        }
-        return null;
+    public Set<String> publicHolidaysDates(){
+        Set<String> holidaysDates = new HashSet<>();
+        Calendar date1 = Calendar.getInstance();
+        date1.set(2024, Calendar.JUNE, 17);
+        Calendar date2 = Calendar.getInstance();
+        date2.set(2024, Calendar.JUNE, 25);
+        Calendar date3 = Calendar.getInstance();
+        date3.set(2024, Calendar.JUNE, 26);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("EEEE d MMMM yyyy", Locale.ENGLISH);
+        Collections.addAll(holidaysDates, dateFormat.format(date1.getTime()), dateFormat.format(date2.getTime()), dateFormat.format(date3.getTime()));
+        return holidaysDates;
     }
+
+    public abstract List<String> getListOfWorkingDays(Calendar startDate);
 }

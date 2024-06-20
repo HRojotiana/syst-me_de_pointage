@@ -15,22 +15,10 @@ import static java.util.Calendar.SUNDAY;
 @ToString
 @EqualsAndHashCode
 public class MonthCalendar {
-    private Calendar juneCalendar;
+    private Calendar juneCalendar = Calendar.getInstance();
 
-    public MonthCalendar(Calendar juneCalendar) {
-        if(this.juneCalendar.MONTH == JUNE){
-            this.juneCalendar = juneCalendar;
-        }
+    public MonthCalendar() {
+        this.juneCalendar.set(Calendar.YEAR, 2024);
+        this.juneCalendar.set(Calendar.MONTH, 5);
     }
-
-    public List<LocalDate> getListOfWorkingDays(){
-        List workingDays = new ArrayList<>();
-        if(this.juneCalendar.MONTH == JUNE) {
-            while (juneCalendar.DAY_OF_WEEK != SUNDAY) {
-                workingDays.add(Calendar.DATE);
-            }
-        }
-        return workingDays;
-    }
-
 }
