@@ -17,7 +17,7 @@ public sealed abstract class Category permits Senior, Normal, Guardian, Driver {
     private Salary normalSalary;
     private double compensation;
 
-    public Set<String> publicHolidaysDates(){
+    protected Set<String> publicHolidaysDates(){
         Set<String> holidaysDates = new HashSet<>();
         Calendar date1 = Calendar.getInstance();
         date1.set(2024, Calendar.JUNE, 17);

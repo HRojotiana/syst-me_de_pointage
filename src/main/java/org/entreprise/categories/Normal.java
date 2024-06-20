@@ -28,7 +28,6 @@ public final class Normal extends Category {
         Set<String> holidays = publicHolidaysDates();
         SimpleDateFormat dateFormat = new SimpleDateFormat("EEEE d MMMM yyyy", Locale.ENGLISH);
         Calendar currentDate = (Calendar)  startDate.clone();
-        currentDate.set(Calendar.DAY_OF_WEEK, SUNDAY);
         for(int i=1; i<=7; i++){
             if((currentDate.get(Calendar.DAY_OF_WEEK) != SUNDAY) && (currentDate.get(Calendar.DAY_OF_WEEK) != SATURDAY) &&(!holidays.contains(dateFormat.format(currentDate.getTime())))){
                 workingDays.add((Calendar) currentDate.clone());
