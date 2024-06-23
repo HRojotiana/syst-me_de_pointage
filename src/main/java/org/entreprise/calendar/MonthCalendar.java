@@ -2,14 +2,7 @@ package org.entreprise.calendar;
 
 import lombok.*;
 
-import java.time.LocalDate;
-import java.time.Month;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
-
-import static java.util.Calendar.JUNE;
-import static java.util.Calendar.SUNDAY;
 @Getter
 @Setter
 @ToString
