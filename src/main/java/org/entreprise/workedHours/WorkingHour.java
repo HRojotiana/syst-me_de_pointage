@@ -7,7 +7,7 @@ import lombok.*;
 @Setter
 @ToString
 @EqualsAndHashCode
-public sealed class WorkedHour permits IncreasedHour, ExtraHour {
+public sealed class WorkingHour permits IncreasedHour, ExtraHour {
     private String name;
     private float hourlyRate;
 }
