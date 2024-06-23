@@ -39,4 +39,9 @@ public final class Normal extends Category {
         }
         return workingDaysFormatted;
     }
+
+    @Override
+    public int numberOfWorkingDays(Calendar startDate) {
+        return 0;
+    }
 }

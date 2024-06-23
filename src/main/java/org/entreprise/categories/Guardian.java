@@ -44,4 +44,9 @@ public final class Guardian extends Category {
         }
         return workingDaysFormatted;
     }
+
+    @Override
+    public int numberOfWorkingDays(Calendar startDate){
+        return getListOfWorkingDays(startDate).size();
+    }
 }

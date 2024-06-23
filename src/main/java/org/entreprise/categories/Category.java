@@ -31,4 +31,5 @@ public sealed abstract class Category permits Senior, Normal, Guardian, Driver {
     }
 
     public abstract List<String> getListOfWorkingDays(Calendar startDate);
+    public abstract int numberOfWorkingDays(Calendar startDate);
 }

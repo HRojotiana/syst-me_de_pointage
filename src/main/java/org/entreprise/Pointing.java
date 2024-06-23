@@ -2,13 +2,11 @@ package org.entreprise;
 
 import lombok.*;
 import org.entreprise.calendar.MonthCalendar;
-import org.entreprise.categories.Normal;
 import org.entreprise.employee.Employee;
 import org.entreprise.workedHours.ExtraHour;
 import org.entreprise.workedHours.IncreasedHour;
+import org.entreprise.workedHours.NightShift;
 
-import java.awt.*;
-import java.time.LocalDate;
 import java.util.*;
 import java.util.List;
 
@@ -20,13 +18,15 @@ public class Pointing {
     private Employee employee;
     private MonthCalendar monthCalendar;
     private List<ExtraHour> extraHours; //for example extraHours.get(0) = 8 (the number of hours in a week)
-    private List<IncreasedHour> increasedHours = new ArrayList<>(); // the employe may have different types of increased hours in a week
+    private List<IncreasedHour> increasedHours; // the employee may have different types of increased hours in a month
+    private NightShift nightShift;
 
-    public Pointing(Employee employee, MonthCalendar monthCalendar) {
+    public Pointing(Employee employee, MonthCalendar monthCalendar, NightShift nightShift) {
         this.employee = employee;
         this.monthCalendar = monthCalendar;
         this.extraHours = new ArrayList<>();
         this.increasedHours = new ArrayList<>();
+        this.nightShift = nightShift;
     }
 
     private int countAllExtraHours(){
@@ -37,10 +37,10 @@ public class Pointing {
         return sumOfAllExtraHours;
     }
 
-    private int countAllIncreasedHours(){
+    private int countAllIncreasedHours(Calendar startDate){
         int sumOfAllIncreasedHours = 0;
         for(IncreasedHour increasedHour : increasedHours){
-            sumOfAllIncreasedHours += increasedHour.getValue();
+                sumOfAllIncreasedHours += increasedHour.getValue();
         }
         return sumOfAllIncreasedHours;
     }
@@ -48,12 +48,17 @@ public class Pointing {
     public int countAllWorkingHours(Calendar startDate){
         List<Integer> allWorkingHours = new ArrayList<>();
         int allExtraHours = countAllExtraHours();
-        int allIncreasedHours = countAllIncreasedHours();
+        int allIncreasedHours = countAllIncreasedHours(startDate);
 
         int normalWorkHourValue = 8;
         int normalWorkingHours = employee.getCategory().getListOfWorkingDays(startDate).size() * normalWorkHourValue;
+        int nightWokingHours = employee.getCategory().getListOfWorkingDays(startDate).size() * nightShift.getValue();
 
-        Collections.addAll(allWorkingHours,allExtraHours, allIncreasedHours, normalWorkingHours);
+        if(nightShift.getValue() == 0){
+            Collections.addAll(allWorkingHours,allExtraHours, allIncreasedHours, normalWorkingHours);
+        }else{
+            Collections.addAll(allWorkingHours,allExtraHours, allIncreasedHours, nightWokingHours);
+        }
 
         int sumOfAllHours = allWorkingHours.stream().reduce(0, (a, b) -> a + b);
 

@@ -22,4 +22,9 @@ public final class Senior extends Category {
     public List<String> getListOfWorkingDays(Calendar startDate) {
         return null;
     }
+
+    @Override
+    public int numberOfWorkingDays(Calendar startDate) {
+        return 0;
+    }
 }
