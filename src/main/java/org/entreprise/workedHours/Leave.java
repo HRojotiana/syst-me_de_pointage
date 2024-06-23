@@ -24,13 +24,8 @@ public class Leave {
     public int numberOfLeavesDays(){
         if(startDate != null && endDate != null){
             int daysOfLeaves = (int) ChronoUnit.DAYS.between(startDate, endDate);
-            return daysOfLeaves;
+            return daysOfLeaves + 1;
         }
         return 0;
-    }
-
-    public static void main(String[] args) {
-        var leave = new Leave();
-        System.out.println(leave.numberOfLeavesDays());
     }
 }
