@@ -13,7 +13,7 @@ import java.time.LocalDate;
 public class Employee {
     private String firstName;
     private String lastName;
-    private Long serialNumber;
+    private int serialNumber;
     private LocalDate dateDeNaissance;
     private LocalDate hiringDate;
     private LocalDate contractEndDate;
