@@ -23,7 +23,7 @@ public class GuardianTest {
         var guardian1 = new Employee("John", "Doe", 236547, LocalDate.of(1984, 05, 26), LocalDate.of(2023, 06, 10), LocalDate.of(2025, 06, 10), guardian);
         var startDate = Calendar.getInstance();
         startDate.set(2024, Calendar.JUNE, 2);
-        assertEquals(7, guardian1.getCategory().getListOfWorkingDays(startDate).size());
+        assertEquals(27, guardian1.getCategory().getListOfWorkingDays(startDate).size());
     }
 
     @Test
@@ -86,5 +86,27 @@ public class GuardianTest {
         startDate.set(2024, Calendar.JUNE, 1);
 
     assertEquals(260, rakotoPointing.countAllWorkingHours(startDate));
+    }
+
+    @Test
+    public void rabe_working_hours_after_his_leaves(){
+        var guardianSalary = new Salary(110_000);
+        var guardian = new Guardian("guardian", 56, guardianSalary, 0.0);
+        var rabe = new Employee("Rabe", "Andria", 2145874, LocalDate.of(1984, 02, 12), LocalDate.of(2023, 01, 23), LocalDate.of(2025, 01, 23), guardian);
+
+        var june = new MonthCalendar();
+
+        var nightShift = new NightShift(10);
+        var rabeLeave = new Leave("sick", LocalDate.of(2024, 6, 25), LocalDate.of(2024, 6, 26));
+
+        var rabePointing = new Pointing(rabe, june, nightShift, rabeLeave);
+        rabePointing.getNightShift().equals(nightShift);
+
+        var startDate = Calendar.getInstance();
+        startDate.set(2024, Calendar.JUNE, 1);
+
+        rabe.getCategory().getListOfWorkingDays(startDate).isEmpty();
+
+        assertEquals(280, rabePointing.countAllWorkingHours(startDate));
     }
 }
