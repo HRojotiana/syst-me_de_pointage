@@ -38,7 +38,7 @@ public class GuardianTest {
         var startDate = Calendar.getInstance();
         startDate.set(2024, Calendar.JUNE, 1);
 
-        assertEquals(216, rakotoPointing.countAllWorkingHours(startDate));
+        assertEquals(240, rakotoPointing.countAllWorkingHours(startDate));
     }
 
     @Test
@@ -59,6 +59,6 @@ public class GuardianTest {
 
         rabe.getCategory().getListOfWorkingDays(startDate).isEmpty();
 
-        assertEquals(270, rabePointing.countAllWorkingHours(startDate));
+        assertEquals(300, rabePointing.countAllWorkingHours(startDate));
     }
 }

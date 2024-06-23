@@ -51,13 +51,13 @@ public class Pointing {
         int allIncreasedHours = countAllIncreasedHours(startDate);
 
         int normalWorkHourValue = 8;
-        int normalWorkingHours = employee.getCategory().getListOfWorkingDays(startDate).size() * normalWorkHourValue;
-        int nightWokingHours = employee.getCategory().getListOfWorkingDays(startDate).size() * nightShift.getValue();
+        int normalWorkingHours = monthCalendar.getAllDays(startDate).size() * normalWorkHourValue;
+        int nightWorkingHours = monthCalendar.getAllDays(startDate).size() * nightShift.getValue();
 
         if(nightShift.getValue() == 0){
-            Collections.addAll(allWorkingHours,allExtraHours, allIncreasedHours, normalWorkingHours);
+            Collections.addAll(allWorkingHours,allExtraHours, allIncreasedHours, normalWorkingHours, nightWorkingHours);
         }else{
-            Collections.addAll(allWorkingHours,allExtraHours, allIncreasedHours, nightWokingHours);
+            Collections.addAll(allWorkingHours,allExtraHours, allIncreasedHours, nightWorkingHours);
         }
 
         int sumOfAllHours = allWorkingHours.stream().reduce(0, (a, b) -> a + b);
