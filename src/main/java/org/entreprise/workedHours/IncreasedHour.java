@@ -10,9 +10,9 @@ import lombok.ToString;
 @ToString
 @EqualsAndHashCode
 public final class IncreasedHour extends WorkingHour {
-    private String type;
-    public IncreasedHour(String nom, float tauxHoraire, String type) {
-        super(nom, tauxHoraire);
+    private String type; //for example night, sunday or public holiday
+    public IncreasedHour(String nom, int value, String type) {
+        super(nom, value);
         this.type = type;
     }
 }

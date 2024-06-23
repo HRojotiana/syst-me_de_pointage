@@ -9,5 +9,5 @@ import lombok.*;
 @EqualsAndHashCode
 public sealed class WorkingHour permits IncreasedHour, ExtraHour {
     private String name;
-    private float hourlyRate;
+    private int value;
 }

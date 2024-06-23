@@ -33,7 +33,7 @@ public final class Guardian extends Category {
         Set<String> holidays = publicHolidaysDates();
         SimpleDateFormat dateFormat = new SimpleDateFormat("EEEE d MMMM yyyy", Locale.ENGLISH);
         Calendar currentDate = (Calendar) startDate.clone();
-        for(int i=1; i<=7; i++){
+        for(int i=1; i<=30; i++){
             if((!holidays.contains(dateFormat.format(currentDate.getTime())))){
                 workingDays.add((Calendar) currentDate.clone());
             }

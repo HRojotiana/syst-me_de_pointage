@@ -11,7 +11,7 @@ import lombok.ToString;
 @EqualsAndHashCode
 
 public final class ExtraHour extends WorkingHour {
-    public ExtraHour(String name, float hourlyRate) {
-        super(name, hourlyRate);
+    public ExtraHour(String name, int value) {
+        super(name, value);
     }
 }
