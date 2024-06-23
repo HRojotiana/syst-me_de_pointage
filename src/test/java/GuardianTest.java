@@ -4,12 +4,14 @@ import org.entreprise.calendar.MonthCalendar;
 import org.entreprise.categories.Guardian;
 import org.entreprise.employee.Employee;
 import org.entreprise.workedHours.IncreasedHour;
+import org.entreprise.workedHours.Leave;
 import org.entreprise.workedHours.NightShift;
 import org.junit.Test;
 
 import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
@@ -33,7 +35,8 @@ public class GuardianTest {
         var june = new MonthCalendar();
 
         var nightShift = new NightShift(0);
-        var rakotoPointing = new Pointing(rakoto, june, nightShift);
+        var rakotoLeave = new Leave();
+        var rakotoPointing = new Pointing(rakoto, june, nightShift, rakotoLeave);
 
         var startDate = Calendar.getInstance();
         startDate.set(2024, Calendar.JUNE, 1);
@@ -50,8 +53,9 @@ public class GuardianTest {
         var june = new MonthCalendar();
 
         var nightShift = new NightShift(10);
+        var rabeLeave = new Leave();
 
-        var rabePointing = new Pointing(rabe, june, nightShift);
+        var rabePointing = new Pointing(rabe, june, nightShift, rabeLeave);
         rabePointing.getNightShift().equals(nightShift);
 
         var startDate = Calendar.getInstance();
@@ -60,5 +64,27 @@ public class GuardianTest {
         rabe.getCategory().getListOfWorkingDays(startDate).isEmpty();
 
         assertEquals(300, rabePointing.countAllWorkingHours(startDate));
+    }
+
+    @Test
+    public void rakoto_workingHours_after_rabe_leave_sick(){
+        var guardianSalary = new Salary(110_000);
+        var guardian = new Guardian("guardian", 56, guardianSalary, 0.0);
+        var rakoto = new Employee("Rakoto", "Randria", 236874, LocalDate.of(1998, 03, 05), LocalDate.of(2022, 01,  03), LocalDate.of(2025, 01, 03), guardian);
+
+        var june = new MonthCalendar();
+
+        var nightShift = new NightShift(0);
+
+        var night = new IncreasedHour("night shift", 20, "night");
+
+        var rakotoLeave = new Leave();
+        var rakotoPointing = new Pointing(rakoto, june, nightShift, rakotoLeave);
+        rakotoPointing.getIncreasedHours().add(night);
+
+        var startDate = Calendar.getInstance();
+        startDate.set(2024, Calendar.JUNE, 1);
+
+    assertEquals(260, rakotoPointing.countAllWorkingHours(startDate));
     }
 }

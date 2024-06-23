@@ -5,6 +5,7 @@ import org.entreprise.calendar.MonthCalendar;
 import org.entreprise.employee.Employee;
 import org.entreprise.workedHours.ExtraHour;
 import org.entreprise.workedHours.IncreasedHour;
+import org.entreprise.workedHours.Leave;
 import org.entreprise.workedHours.NightShift;
 
 import java.util.*;
@@ -20,13 +21,15 @@ public class Pointing {
     private List<ExtraHour> extraHours; //for example extraHours.get(0) = 8 (the number of hours in a week)
     private List<IncreasedHour> increasedHours; // the employee may have different types of increased hours in a month
     private NightShift nightShift;
+    private Leave leave;
 
-    public Pointing(Employee employee, MonthCalendar monthCalendar, NightShift nightShift) {
+    public Pointing(Employee employee, MonthCalendar monthCalendar, NightShift nightShift, Leave leave) {
         this.employee = employee;
         this.monthCalendar = monthCalendar;
         this.extraHours = new ArrayList<>();
         this.increasedHours = new ArrayList<>();
         this.nightShift = nightShift;
+        this.leave = leave;
     }
 
     private int countAllExtraHours(){
@@ -55,9 +58,9 @@ public class Pointing {
         int nightWorkingHours = monthCalendar.getAllDays(startDate).size() * nightShift.getValue();
 
         if(nightShift.getValue() == 0){
-            Collections.addAll(allWorkingHours,allExtraHours, allIncreasedHours, normalWorkingHours, nightWorkingHours);
+            Collections.addAll(allWorkingHours,allExtraHours, allIncreasedHours, normalWorkingHours, nightWorkingHours, leave.numberOfLeavesDays() * 8);
         }else{
-            Collections.addAll(allWorkingHours,allExtraHours, allIncreasedHours, nightWorkingHours);
+            Collections.addAll(allWorkingHours,allExtraHours, allIncreasedHours, nightWorkingHours, leave.numberOfLeavesDays() * 10);
         }
 
         int sumOfAllHours = allWorkingHours.stream().reduce(0, (a, b) -> a + b);
