@@ -58,12 +58,12 @@ public class Pointing {
         int nightWorkingHours = monthCalendar.getAllDays(startDate).size() * nightShift.getValue();
 
         if(nightShift.getValue() == 0){
-            Collections.addAll(allWorkingHours,allExtraHours, allIncreasedHours, normalWorkingHours, nightWorkingHours, leave.numberOfLeavesDays() * 8);
+            Collections.addAll(allWorkingHours,allExtraHours, allIncreasedHours, normalWorkingHours, nightWorkingHours, (-leave.numberOfLeavesDays()) * 8);
         }else{
-            Collections.addAll(allWorkingHours,allExtraHours, allIncreasedHours, nightWorkingHours, leave.numberOfLeavesDays() * 10);
+            Collections.addAll(allWorkingHours,allExtraHours, allIncreasedHours, nightWorkingHours, (-leave.numberOfLeavesDays()) * 10);
         }
 
-        int sumOfAllHours = allWorkingHours.stream().reduce(0, (a, b) -> a + b);
+        int sumOfAllHours = allWorkingHours.stream().reduce(0, (firstHour, secondHour) -> firstHour + secondHour);
 
         return sumOfAllHours;
     }
