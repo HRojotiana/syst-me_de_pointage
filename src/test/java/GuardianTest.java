@@ -41,7 +41,7 @@ public class GuardianTest {
         var startDate = Calendar.getInstance();
         startDate.set(2024, Calendar.JUNE, 1);
 
-        assertEquals(240, rakotoPointing.countAllWorkingHours(startDate));
+        assertEquals(300, rakotoPointing.countAllWorkingHours(startDate));
     }
 
     @Test
@@ -52,7 +52,7 @@ public class GuardianTest {
 
         var june = new MonthCalendar();
 
-        var nightShift = new NightShift(10);
+        var nightShift = new NightShift(14);
         var rabeLeave = new Leave();
 
         var rabePointing = new Pointing(rabe, june, nightShift, rabeLeave);
@@ -63,7 +63,7 @@ public class GuardianTest {
 
         rabe.getCategory().getListOfWorkingDays(startDate).isEmpty();
 
-        assertEquals(300, rabePointing.countAllWorkingHours(startDate));
+        assertEquals(420, rabePointing.countAllWorkingHours(startDate));
     }
 
     @Test
@@ -76,7 +76,7 @@ public class GuardianTest {
 
         var nightShift = new NightShift(0);
 
-        var night = new IncreasedHour("night shift", 20, "night");
+        var night = new IncreasedHour("night shift", 28, "night");
 
         var rakotoLeave = new Leave();
         var rakotoPointing = new Pointing(rakoto, june, nightShift, rakotoLeave);
@@ -85,7 +85,7 @@ public class GuardianTest {
         var startDate = Calendar.getInstance();
         startDate.set(2024, Calendar.JUNE, 1);
 
-    assertEquals(260, rakotoPointing.countAllWorkingHours(startDate));
+    assertEquals(328, rakotoPointing.countAllWorkingHours(startDate));
     }
 
     @Test
@@ -96,7 +96,7 @@ public class GuardianTest {
 
         var june = new MonthCalendar();
 
-        var nightShift = new NightShift(10);
+        var nightShift = new NightShift(14);
         var rabeLeave = new Leave("sick", LocalDate.of(2024, 6, 25), LocalDate.of(2024, 6, 26));
 
         var rabePointing = new Pointing(rabe, june, nightShift, rabeLeave);
@@ -107,6 +107,6 @@ public class GuardianTest {
 
         rabe.getCategory().getListOfWorkingDays(startDate).isEmpty();
 
-        assertEquals(280, rabePointing.countAllWorkingHours(startDate));
+        assertEquals(392, rabePointing.countAllWorkingHours(startDate));
     }
 }
